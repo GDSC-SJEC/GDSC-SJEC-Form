@@ -1,13 +1,12 @@
-import type { NextPage } from 'next';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 
-const Home: NextPage = () => {
+const Home = () => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [phone, setPhone] = useState('');
 	const [message, setMessage] = useState('');
 
-	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		let form = {

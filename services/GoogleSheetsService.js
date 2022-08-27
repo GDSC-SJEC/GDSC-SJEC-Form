@@ -1,14 +1,7 @@
-import {google} from "googleapis";
+import { google } from "googleapis";
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
-export type SheetForm = {
-    name: string
-    email: string
-    phone: string
-    message: string
-}
-
-export async function submitToGoogleSheets(values: SheetForm) {
+export async function submitToGoogleSheets(values) {
     const auth = new google.auth.GoogleAuth({
         credentials: {
             client_email: process.env.GOOGLE_CLIENT_EMAIL,
@@ -38,7 +31,7 @@ export async function submitToGoogleSheets(values: SheetForm) {
     });
 }
 
-export async function submitToGoogleSheets2(values: SheetForm) {
+export async function submitToGoogleSheets2(values) {
     // Initialize the sheet - doc ID is the long id in the sheets URL
     const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
 
