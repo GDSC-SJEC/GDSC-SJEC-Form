@@ -69,7 +69,7 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 		} else {
 			setErrors({ ...errors, domains: false });
 		}
-	}, [domainsArray]);
+	}, [domainsArray, changedOnce, errors]);
 
 	const openDropdown = () => setDropdownOpen(!dropdownOpen);
 
