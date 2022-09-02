@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "gdsc-sjec-form",
+  "private_key_id": "3bd20804670f93f49c6fb12402ee146da91fbae0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDgbf5vnK3MUgtd\nn2ysSSZ1iGtjkl6+I7HYOdyfiJ0JaImJ3jFzmg+q27zucn2aoZa9+IFtHYU/xx4t\n5wbNo75OIn2+IjP6a8H/YoJkXKbVvNbjIBTDzlG9suhO1K0nViL6kVg1vQGdADtl\nu9eQLMycu8V1qPWmpFNsJqa0Ey2CJGwxFw1kfC3STTQ/rWzK2SWJVMePchjbgzRW\nxTQ5ig//0AVK22cXeAzyHjG68xn5z5b3zUIwUgrKt/jhDldz2PavXxY+w17Eeq3T\npbcp8gy6seFTkdhzt5YX1JPduAhLMIiGrYMGbc3cfQnXFytT3YtPg+nmIg2rrl7s\nSIMq/laTAgMBAAECggEAGUWkPZrrN+iojqcu/Gro/ETbhuUKwHwngNLp2kMZdTTt\ngUthI9neLXNnX9h09rkpztmRcCE/XyeuaSUsmcfNsbcQ6XH+NWhLT6qe8UCSVDDa\nvSJghDi9m/rDTcEwKw+i37ax3qyaZmdfc5Ib8N3ClVxQR3K6ZW9NVOPjU2rHbfHd\np3/SJg/s655YH+fxhHFzXLSg2RKa9R2KrVbL/UEPNbDPWa+vOh7X99V81O+1f1++\nToL0/ZLab2Ak6qdlGAVXItZ78IEA8mGP84k+1LA5yoNPIV5I22BBd264KROmYZUZ\nIFrJpact/4OOnK4i2ckJSs8FwQrTzG+A/CMO9HIMsQKBgQD68/t4UJrXDnPkwVSk\nwi/WHVUYdiNRJD4lGnIKtfOYM4J2mfIuAtJk5zC20dHqBwFQxbvvOGtTKIlxckLz\nJmaMiPANlr7LkhA4BvF/7yFoRFBtrzyRuiJXVdrnTVTuT7eMXyJydY3l7r1Jd0ke\nVT5+dcOkd3JlzDEeXSwexdxQcQKBgQDk8XUXrjWoQQnd6x40pkFUnqyUGo7j8H1Q\nrM+gfvd1xA7Npubp0qAdWXE3yLeOLzPmu9r12xvgy7ma3xnvzssddrBKsvVfDTYh\nsrz0y+xn8F+Ci9tqx1nFM1JEUxA1HlX861TnQk3Rqz4FdIdgWXtYu4+DctEuury5\neAkMvz5ZQwKBgQCLiQ3SID94RHj8QOMnmTGwBC9EoquQem5zgvjWK8V+Y2WvPHoE\nS11g7YuQm6n0TmDU4J1WrjA+1NNXWQkQ2dE7YwjXBXKhDl4mSPYPBI+2wgVWd5Fe\nFfjyRrKo2b7Xo0uTqXIl4mc76jsllkX5r7xH5IMb966MG7VUBMp7cdjGgQKBgQCR\nQ3+HQfs7weCv1VI6F89WEMPxyRQnHt10heHLtSPwrjCyXhcf/4umc6z5tzp4Vgz5\ndvKMkrUSolEnKi370dtg24EqNHiqEejp4s4wCP/8RzFi1Lio/MpB7LljLs0W1yO6\nMduSTKixw5S7w19uS/iOqZt6zSxbGRNMHxSm6OV3nwKBgG/17jCAoiGX6wzR++Xc\nxACg1r2kOj4tRiHuxpXGGdDMvDhGs1s5zBf0F76TeD3X/eRVZYevBdaFmi4g0Xdp\n3RJ+GjQzaB8m5jPA2YzfTCZHElkKDqOQVgversrndtf1ZGf4f0bRGXK8Tcrt5QwQ\n23FWPbyni1Im/27/fnuFMsK8\n-----END PRIVATE KEY-----\n",
+  "client_email": "gdsc-form-sheet@gdsc-sjec-form.iam.gserviceaccount.com",
+  "client_id": "101219971627508851953",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gdsc-form-sheet%40gdsc-sjec-form.iam.gserviceaccount.com"
+}

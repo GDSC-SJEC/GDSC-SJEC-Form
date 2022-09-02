@@ -1,111 +1,93 @@
 import { useState } from 'react';
 
+import {
+	BackgroundContainer,
+	Checkbox,
+	CheckboxContainer,
+	FormContainer,
+} from './index.styles';
+import FormOne from '../components/form-one/FormOne';
+import Loading from '../components/loading/Loading';
+import FormTwo from '../components/form-two/FormTwo';
+import FormThree from '../components/form-three/FormThree';
+import ErrorForm from '../components/error-form/ErrorForm';
+
 const Home = () => {
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
-	const [phone, setPhone] = useState('');
-	const [message, setMessage] = useState('');
+	const initialState = {
+		name: '',
+		email: '',
+		github: '',
+		linkedin: '',
+		discord: '',
+		resume: '',
+		projects: '',
+		skills: '',
+		domains: '',
+		interests: '',
+	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+	const [loading, setLoading] = useState(false);
+	const [formData, setFormData] = useState(initialState);
 
-		let form = {
-			name,
-			email,
-			phone,
-			message,
-		};
-
-		const rawResponse = await fetch('/api/submit', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(form),
+	const handleChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
 		});
-		const content = await rawResponse.json();
+	};
 
-		// print to screen
-		console.log(content);
-		// alert(content.data.tableRange)
+	const [currentView, setCurrentView] = useState(1);
 
-		// Reset the form fields
-		setMessage('');
-		setPhone('');
-		setName('');
-		setEmail('');
+	const slideForm = (formID) => {
+		setCurrentView(formID);
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+		}, 2000);
 	};
 
 	return (
-		<main className='bg-gray-100 min-h-screen'>
-			<div className='max-w-5xl mx-auto py-16'>
-				<form className='py-4 space-y-4' onSubmit={handleSubmit}>
-					<div className='flex items-center justify-center'>
-						<label htmlFor='name' className='sr-only'>
-							Name
-						</label>
-						<input
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-							type='text'
-							name='name'
-							id='name'
-							className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-64 sm:text-md border-gray-300 rounded-md'
-							placeholder='Your Name'
+		<BackgroundContainer>
+			<FormContainer>
+				<h1>Fill your self</h1>
+				<CheckboxContainer>
+					<Checkbox type='checkbox' checked={currentView == 1} />
+					<Checkbox type='checkbox' checked={currentView == 2} />
+					<Checkbox type='checkbox' checked={currentView == 3} />
+				</CheckboxContainer>
+				{currentView === 1 ? (
+					!loading ? (
+						<FormOne
+							slideForm={slideForm}
+							data={formData}
+							handleChange={handleChange}
 						/>
-					</div>
-					<div className='flex items-center justify-center'>
-						<label htmlFor='email' className='sr-only'>
-							Email
-						</label>
-						<input
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							type='email'
-							name='email'
-							id='email'
-							className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-64 sm:text-md border-gray-300 rounded-md'
-							placeholder='Your Email'
+					) : (
+						<Loading text='Missed something? No problem!' />
+						// <Section>help</Section>
+					)
+				) : currentView === 2 ? (
+					!loading ? (
+						<FormTwo
+							slideForm={slideForm}
+							data={formData}
+							handleChange={handleChange}
+							setFormData={setFormData}
 						/>
-					</div>
-					<div className='flex items-center justify-center'>
-						<label htmlFor='phone' className='sr-only'>
-							Phone
-						</label>
-						<input
-							value={phone}
-							onChange={(e) => setPhone(e.target.value)}
-							type='tel'
-							name='phone'
-							id='phone'
-							className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-64 sm:text-md border-gray-300 rounded-md'
-							placeholder='Your Phone'
-						/>
-					</div>
-					<div className='flex items-center justify-center'>
-						<label htmlFor='message' className='sr-only'>
-							Message
-						</label>
-						<textarea
-							value={message}
-							onChange={(e) => setMessage(e.target.value)}
-							id='message'
-							className='shadow-md focus:ring-indigo-500 focus:border-indigo-500 block w-64 sm:text-md border-gray-300 rounded-md'
-							placeholder='Your Message'
-						/>
-					</div>
-					<div className='flex items-center justify-center'>
-						<button
-							type='submit'
-							className='flex items-center justify-center text-sm w-64 rounded-md shadow py-3 px-2 text-white bg-indigo-600'
-						>
-							Save
-						</button>
-					</div>
-				</form>
-			</div>
-		</main>
+					) : (
+						<Loading text="Great! We'll need some more information" />
+					)
+				) : currentView === 3 ? (
+					!loading ? (
+						<FormThree />
+					) : (
+						<Loading text='Submitting your information, please wait' />
+					)
+				) : (
+					<ErrorForm />
+				)}
+			</FormContainer>
+		</BackgroundContainer>
 	);
 };
 
