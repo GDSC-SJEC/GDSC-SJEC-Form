@@ -46,6 +46,11 @@ const Home = () => {
 		}, 2000);
 	};
 
+	const slideResult = (formID) => {
+		setCurrentView(formID);
+		setLoading(true);
+	};
+
 	return (
 		<BackgroundContainer>
 			<FormContainer>
@@ -73,6 +78,8 @@ const Home = () => {
 							data={formData}
 							handleChange={handleChange}
 							setFormData={setFormData}
+							slideResult={slideResult}
+							setLoading={setLoading}
 						/>
 					) : (
 						<Loading text="Great! We'll need some more information" />

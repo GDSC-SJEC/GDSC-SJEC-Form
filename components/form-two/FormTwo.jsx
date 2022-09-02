@@ -49,7 +49,14 @@ const customStyles = {
 	},
 };
 
-const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
+const FormTwo = ({
+	slideForm,
+	data,
+	handleChange,
+	setFormData,
+	slideResult,
+	setLoading,
+}) => {
 	const [isOpen, setIsOpen] = useState(true);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [domainsArray, setDomainsArray] = useState([]);
@@ -73,7 +80,6 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 
 	const handleCheckbox = (e) => {
 		const { value } = e.target;
-
 		if (e.target.checked) {
 			setChangedOnce(true);
 			if (domainsArray.length === 4) {
@@ -86,6 +92,8 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 	};
 
 	const handleSubmit = (e) => {
+		e.preventDefault();
+		slideResult(3);
 		if (
 			checkResume(data.resume).valid &&
 			checkDomain(domainsArray.join(', ')).valid
@@ -100,11 +108,12 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 			})
 				.then(() => {
 					setFormData({});
-					slideForm(3);
+					setLoading(false);
 				})
 				.catch(() => {
 					setFormData({});
 					slideForm(4);
+					setLoading(false);
 				});
 		} else {
 			alert('Please fill out all the required fields');
