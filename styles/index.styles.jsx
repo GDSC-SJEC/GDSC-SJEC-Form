@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BackgroundContainer = styled.div`
-	background: url('../assets/background.png') no-repeat fixed;
+	background: url('./images/background.png') no-repeat fixed;
 	color: #fff;
 	font-family: 'Poppins', sans-serif;
 	display: flex;

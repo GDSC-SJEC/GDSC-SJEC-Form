@@ -32,8 +32,6 @@ import Modal from 'react-modal';
 import { useEffect, useState } from 'react';
 import { checkDomain, checkResume } from '../../utils/validation';
 
-// import * as ResumeGuide from '../../public/images/resume-guide.png';
-
 const customStyles = {
 	overlay: {
 		backgroundColor: 'rgba(25, 23, 23, 0.91)',
