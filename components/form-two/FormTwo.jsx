@@ -55,6 +55,7 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 	const [isOpen, setIsOpen] = useState(true);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [domainsArray, setDomainsArray] = useState(data.domains.split(', '));
+	const [changedOnce, setChangedOnce] = useState(false);
 
 	useEffect(() => {
 		if (data.domains === '') {
@@ -62,11 +63,21 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 		}
 	}, [data.domains]);
 
+	useEffect(() => {
+		if (domainsArray.length < 1 && changedOnce) {
+			setErrors({ ...errors, domains: true });
+		} else {
+			setErrors({ ...errors, domains: false });
+		}
+	}, [domainsArray]);
+
 	const openDropdown = () => setDropdownOpen(!dropdownOpen);
 
 	const handleCheckbox = (e) => {
 		const { value } = e.target;
+
 		if (e.target.checked) {
+			setChangedOnce(true);
 			if (domainsArray.length === 4) {
 				return alert('You can only select at most 4 domains');
 			}
@@ -97,13 +108,6 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 					setFormData({});
 					slideForm(4);
 				});
-
-			// print to screen
-			// alert(content.data.tableRange)
-
-			// Reset the form fields
-
-			// TODO: add actual thing
 			slideForm(3);
 		} else {
 			alert('Please fill out all the required fields');
@@ -117,6 +121,31 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 			domains: domainsArray.join(', '),
 		});
 		slideForm(1);
+	};
+
+	const [errors, setErrors] = useState({
+		resume: '',
+		domains: '',
+	});
+
+	const checkChange = (e) => {
+		handleChange(e);
+		switch (e.target.name) {
+			case 'resume':
+				setErrors({
+					...errors,
+					resume: !checkResume(e.target.value).valid,
+				});
+				break;
+			case 'domains':
+				setErrors({
+					...errors,
+					domains: !checkDomain(e.target.value).valid,
+				});
+				break;
+			default:
+				break;
+		}
 	};
 
 	return (
@@ -146,14 +175,17 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 							style={{ fontSize: 14, color: 'white' }}
 						/>
 					</IconWrapper>
-					<ErrorText>{checkResume(data.resume).message}</ErrorText>
+					<ErrorText>
+						{errors.resume ? checkResume(data.resume).message : ''}
+					</ErrorText>
 				</LabelStyles>
 				<InputStyles
 					type='text'
 					name='resume'
 					placeholder='Enter your resume link'
 					value={data.resume}
-					onChange={handleChange}
+					id={errors.resume ? 'error' : ''}
+					onChange={checkChange}
 				/>
 			</FormItem>
 			<FormItem>
@@ -183,15 +215,18 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 			<FormItem>
 				<LabelStyles>
 					Domain(s) of Interest *{' '}
-					<ErrorText>{checkDomain(domainsArray.join(', ')).message}</ErrorText>
+					<ErrorText>
+						{errors.domains ? checkDomain(domainsArray.join(', ')).message : ''}
+					</ErrorText>
 				</LabelStyles>
 				<Container onClick={openDropdown}>
 					<InputStyles
 						type='text'
-						name='interests'
+						name='domains'
 						placeholder='Select your domain(s)'
 						value={domainsArray.join(', ')}
-						onChange={handleChange}
+						id={errors.domains ? 'error' : ''}
+						onChange={checkChange}
 						disabled
 					/>
 					<FontAwesomeIconStyles

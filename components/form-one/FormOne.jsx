@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
 	ErrorText,
 	FormItem,
@@ -18,6 +19,14 @@ import {
 } from '../../utils/validation';
 
 const FormOne = ({ slideForm, data, handleChange }) => {
+	const [errors, setErrors] = useState({
+		name: false,
+		email: false,
+		github: false,
+		linkedin: false,
+		discord: false,
+	});
+
 	const routeFormTwo = () => {
 		if (
 			checkName(data.name).valid &&
@@ -32,72 +41,115 @@ const FormOne = ({ slideForm, data, handleChange }) => {
 		}
 	};
 
+	const checkChange = (e) => {
+		handleChange(e);
+		switch (e.target.name) {
+			case 'name':
+				setErrors({ ...errors, name: !checkName(e.target.value).valid });
+				break;
+			case 'email':
+				setErrors({ ...errors, email: !checkEmail(e.target.value).valid });
+				break;
+			case 'github':
+				setErrors({ ...errors, github: !checkGitHub(e.target.value).valid });
+				break;
+			case 'linkedin':
+				setErrors({
+					...errors,
+					linkedin: !checkLinkedin(e.target.value).valid,
+				});
+				break;
+			case 'discord':
+				setErrors({
+					...errors,
+					discord: !checkDiscord(e.target.value).valid,
+				});
+				break;
+			default:
+				break;
+		}
+	};
+
 	return (
 		<Section>
 			<FormItem>
 				<LabelStyles>
-					Name *<ErrorText>{checkName(data.name).message}</ErrorText>{' '}
+					Name *
+					<ErrorText>
+						{errors.name ? checkName(data.name).message : ''}
+					</ErrorText>{' '}
 				</LabelStyles>
 				<InputStyles
 					type='text'
 					name='name'
 					placeholder='Enter your name'
-					id={checkName(data.name).valid ? '' : 'error'}
+					id={errors.name ? 'error' : ''}
 					value={data.name}
-					onChange={handleChange}
+					onChange={checkChange}
 				/>
 			</FormItem>
 			<FormItem>
 				<LabelStyles>
-					Email * <ErrorText>{checkEmail(data.email).message}</ErrorText>
+					Email *{' '}
+					<ErrorText>
+						{errors.email ? checkEmail(data.email).message : ''}
+					</ErrorText>
 				</LabelStyles>
 				<InputStyles
 					type='text'
 					name='email'
 					placeholder='Enter your email'
-					id={checkEmail(data.email).valid ? '' : 'error'}
+					id={errors.email ? 'error' : ''}
 					value={data.email}
-					onChange={handleChange}
+					onChange={checkChange}
 				/>
 			</FormItem>
 			<FormItem>
 				<LabelStyles>
-					GitHub * <ErrorText>{checkGitHub(data.github).message}</ErrorText>
+					GitHub *{' '}
+					<ErrorText>
+						{errors.github ? checkGitHub(data.github).message : ''}
+					</ErrorText>
 				</LabelStyles>
 				<InputStyles
 					type='text'
 					name='github'
 					placeholder='Enter your github link'
-					id={checkGitHub(data.github).valid ? '' : 'error'}
+					id={errors.github ? 'error' : ''}
 					value={data.github}
-					onChange={handleChange}
+					onChange={checkChange}
 				/>
 			</FormItem>
 			<FormItem>
 				<LabelStyles>
 					LinkedIn *{' '}
-					<ErrorText>{checkLinkedin(data.linkedin).message}</ErrorText>
+					<ErrorText>
+						{errors.linkedin ? checkLinkedin(data.linkedin).message : ''}
+					</ErrorText>
 				</LabelStyles>
 				<InputStyles
 					type='text'
 					name='linkedin'
 					placeholder='Enter your linkedin link'
-					id={checkLinkedin(data.linkedin).valid ? '' : 'error'}
+					id={errors.linkedin ? 'error' : ''}
 					value={data.linkedin}
-					onChange={handleChange}
+					onChange={checkChange}
 				/>
 			</FormItem>
 			<FormItem>
 				<LabelStyles>
-					Discord * <ErrorText>{checkDiscord(data.discord).message}</ErrorText>
+					Discord *{' '}
+					<ErrorText>
+						{errors.discord ? checkDiscord(data.discord).message : ''}
+					</ErrorText>
 				</LabelStyles>
 				<InputStyles
 					type='text'
 					name='discord'
 					placeholder='Enter your discord tag. Eg: Name#1234'
-					id={checkDiscord(data.discord).valid ? '' : 'error'}
+					id={errors.discord ? 'error' : ''}
 					value={data.discord}
-					onChange={handleChange}
+					onChange={checkChange}
 				/>
 			</FormItem>
 			<FontAwesomeIcon
