@@ -52,14 +52,14 @@ const customStyles = {
 const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 	const [isOpen, setIsOpen] = useState(true);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
-	const [domainsArray, setDomainsArray] = useState(data.domains.split(', '));
+	const [domainsArray, setDomainsArray] = useState([]);
 	const [changedOnce, setChangedOnce] = useState(false);
 
 	useEffect(() => {
-		if (data.domains === '') {
-			setDomainsArray([]);
+		if (data.domains !== '') {
+			setDomainsArray(data.domains.split(','));
 		}
-	}, [data.domains]);
+	}, []);
 
 	useEffect(() => {
 		if (domainsArray.length < 1 && changedOnce) {
