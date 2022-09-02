@@ -8,7 +8,7 @@ import {
 	NoteText,
 	SecondaryButtonStyles,
 	Section,
-} from '../../pages/index.styles';
+} from '../../styles/index.styles';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -60,7 +60,7 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 		if (data.domains === '') {
 			setDomainsArray([]);
 		}
-	}, []);
+	}, [data.domains]);
 
 	const openDropdown = () => setDropdownOpen(!dropdownOpen);
 

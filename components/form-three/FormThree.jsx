@@ -1,7 +1,7 @@
 import Lottie from 'react-lottie';
 import * as animationData from '../../data/google-success.json';
 
-import { Section } from '../../pages/index.styles';
+import { Section } from '../../styles/index.styles';
 import { AnchorStyles, Result } from './FormThree.styles';
 
 const FormThree = () => {

@@ -5,7 +5,7 @@ import {
 	Checkbox,
 	CheckboxContainer,
 	FormContainer,
-} from './index.styles';
+} from '../styles/index.styles';
 import FormOne from '../components/form-one/FormOne';
 import Loading from '../components/loading/Loading';
 import FormTwo from '../components/form-two/FormTwo';

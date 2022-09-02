@@ -4,7 +4,7 @@ import {
 	InputStyles,
 	LabelStyles,
 	Section,
-} from '../../pages/index.styles';
+} from '../../styles/index.styles';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

@@ -1,7 +1,7 @@
 import Lottie from 'react-lottie';
 import * as animationData from '../../data/form-failed.json';
 
-import { Section } from '../../pages/index.styles';
+import { Section } from '../../styles/index.styles';
 import { AnchorStyles, Result } from './ErrorForm.styles';
 
 const FormThree = () => {
@@ -25,7 +25,7 @@ const FormThree = () => {
 					isStopped={false}
 					isPaused={false}
 				/>
-				<h2>Your response didn't go through!</h2>
+				<h2>Your response didn&apos;t go through!</h2>
 				<AnchorStyles href='mailto:gdsc@sjec.ac.in'>
 					Please contact us
 				</AnchorStyles>
