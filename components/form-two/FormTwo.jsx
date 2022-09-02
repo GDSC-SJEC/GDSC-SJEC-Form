@@ -93,11 +93,11 @@ const FormTwo = ({
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		slideResult(3);
 		if (
 			checkResume(data.resume).valid &&
 			checkDomain(domainsArray.join(', ')).valid
 		) {
+			slideResult(3);
 			fetch('/api/submit', {
 				method: 'POST',
 				headers: {
