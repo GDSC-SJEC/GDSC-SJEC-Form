@@ -106,7 +106,6 @@ const FormTwo = ({ slideForm, data, handleChange, setFormData }) => {
 					setFormData({});
 					slideForm(4);
 				});
-			slideForm(3);
 		} else {
 			alert('Please fill out all the required fields');
 		}
