@@ -82,9 +82,6 @@ const FormTwo = ({
 		const { value } = e.target;
 		if (e.target.checked) {
 			setChangedOnce(true);
-			if (domainsArray.length === 4) {
-				return alert('You can only select at most 4 domains');
-			}
 			setDomainsArray([...domainsArray, value]);
 		} else {
 			setDomainsArray(domainsArray.filter((domain) => domain !== value));
