@@ -11,6 +11,7 @@ import Loading from '../components/loading/Loading';
 import FormTwo from '../components/form-two/FormTwo';
 import FormThree from '../components/form-three/FormThree';
 import ErrorForm from '../components/error-form/ErrorForm';
+import { Toaster } from 'react-hot-toast';
 
 const Home = () => {
 	const initialState = {
@@ -52,49 +53,52 @@ const Home = () => {
 	};
 
 	return (
-		<BackgroundContainer>
-			<FormContainer>
-				<h1>Fill your self</h1>
-				<CheckboxContainer>
-					<Checkbox type='checkbox' checked={currentView == 1} />
-					<Checkbox type='checkbox' checked={currentView == 2} />
-					<Checkbox type='checkbox' checked={currentView == 3} />
-				</CheckboxContainer>
-				{currentView === 1 ? (
-					!loading ? (
-						<FormOne
-							slideForm={slideForm}
-							data={formData}
-							handleChange={handleChange}
-						/>
+		<>
+			<Toaster position='top-right' reverseOrder={false} />
+			<BackgroundContainer>
+				<FormContainer>
+					<h1>Fill your self</h1>
+					<CheckboxContainer>
+						<Checkbox type='checkbox' checked={currentView == 1} />
+						<Checkbox type='checkbox' checked={currentView == 2} />
+						<Checkbox type='checkbox' checked={currentView == 3} />
+					</CheckboxContainer>
+					{currentView === 1 ? (
+						!loading ? (
+							<FormOne
+								slideForm={slideForm}
+								data={formData}
+								handleChange={handleChange}
+							/>
+						) : (
+							<Loading text='Missed something? No problem!' />
+							// <Section>help</Section>
+						)
+					) : currentView === 2 ? (
+						!loading ? (
+							<FormTwo
+								slideForm={slideForm}
+								data={formData}
+								handleChange={handleChange}
+								setFormData={setFormData}
+								slideResult={slideResult}
+								setLoading={setLoading}
+							/>
+						) : (
+							<Loading text="Great! We'll need some more information" />
+						)
+					) : currentView === 3 ? (
+						!loading ? (
+							<FormThree />
+						) : (
+							<Loading text='Submitting your information, please wait' />
+						)
 					) : (
-						<Loading text='Missed something? No problem!' />
-						// <Section>help</Section>
-					)
-				) : currentView === 2 ? (
-					!loading ? (
-						<FormTwo
-							slideForm={slideForm}
-							data={formData}
-							handleChange={handleChange}
-							setFormData={setFormData}
-							slideResult={slideResult}
-							setLoading={setLoading}
-						/>
-					) : (
-						<Loading text="Great! We'll need some more information" />
-					)
-				) : currentView === 3 ? (
-					!loading ? (
-						<FormThree />
-					) : (
-						<Loading text='Submitting your information, please wait' />
-					)
-				) : (
-					<ErrorForm />
-				)}
-			</FormContainer>
-		</BackgroundContainer>
+						<ErrorForm />
+					)}
+				</FormContainer>
+			</BackgroundContainer>
+		</>
 	);
 };
 

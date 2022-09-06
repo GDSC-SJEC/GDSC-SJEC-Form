@@ -31,6 +31,7 @@ import {
 import Modal from 'react-modal';
 import { useEffect, useState } from 'react';
 import { checkDomain, checkResume } from '../../utils/validation';
+import { toast } from 'react-hot-toast';
 
 const customStyles = {
 	overlay: {
@@ -63,10 +64,11 @@ const FormTwo = ({
 	const [changedOnce, setChangedOnce] = useState(false);
 
 	useEffect(() => {
+		console.log(data.domains);
 		if (data.domains !== '') {
-			setDomainsArray(data.domains.split(','));
+			setDomainsArray(data.domains.split(', '));
 		}
-	}, []);
+	}, [data.domains]);
 
 	useEffect(() => {
 		if (domainsArray.length < 1 && changedOnce) {
@@ -113,7 +115,13 @@ const FormTwo = ({
 					setLoading(false);
 				});
 		} else {
-			alert('Please fill out all the required fields');
+			toast.error('Please fill in all the required fields correctly', {
+				style: {
+					borderRadius: '10px',
+					background: '#2c2728',
+					color: '#fff',
+				},
+			});
 		}
 	};
 

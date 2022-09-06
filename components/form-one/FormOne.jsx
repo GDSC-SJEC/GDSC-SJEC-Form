@@ -17,6 +17,7 @@ import {
 	checkLinkedin,
 	checkName,
 } from '../../utils/validation';
+import { toast } from 'react-hot-toast';
 
 const FormOne = ({ slideForm, data, handleChange }) => {
 	const [errors, setErrors] = useState({
@@ -37,7 +38,13 @@ const FormOne = ({ slideForm, data, handleChange }) => {
 		) {
 			slideForm(2);
 		} else {
-			alert('Please fill out all fields');
+			toast.error('Please fill all the fields correctly', {
+				style: {
+					borderRadius: '10px',
+					background: '#2c2728',
+					color: '#fff',
+				},
+			});
 		}
 	};
 
