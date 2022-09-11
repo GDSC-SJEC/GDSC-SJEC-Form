@@ -30,14 +30,7 @@ export default async function handler(
             version: 'v4'
         });
 
-        const currentdate = new Date();
-        const datetime = currentdate.getDate() + "/"
-            + (currentdate.getMonth() + 1) + "/"
-            + currentdate.getFullYear() + " @ "
-            + currentdate.getHours() + ":"
-            + currentdate.getMinutes() + ":"
-            + currentdate.getSeconds();
-
+        const currentdate = new Date().toLocaleString("en-IN", { timeZone: 'Asia/Kolkata' })
         const response = await sheets.spreadsheets.values.append({
             spreadsheetId: process.env.GOOGLE_SHEET_ID,
             range: 'A1:K1',
@@ -45,7 +38,7 @@ export default async function handler(
             requestBody: {
                 values: [
                     [
-                        datetime,
+                        currentdate,
                         body.name,
                         body.email,
                         body.github,
