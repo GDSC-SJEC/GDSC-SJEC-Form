@@ -84,6 +84,15 @@ const FormTwo = ({
 		const { value } = e.target;
 		if (e.target.checked) {
 			setChangedOnce(true);
+			if (domainsArray.length === 2) {
+				return toast.error('You can only select at most 2 domains', {
+					style: {
+						borderRadius: '10px',
+						background: '#2c2728',
+						color: '#fff',
+					},
+				});
+			}
 			setDomainsArray([...domainsArray, value]);
 		} else {
 			setDomainsArray(domainsArray.filter((domain) => domain !== value));
