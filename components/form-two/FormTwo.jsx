@@ -19,6 +19,7 @@ import {
 	DropdownCheckbox,
 	DropdownContainer,
 	DropdownItem,
+	DropdownTitle,
 	FontAwesomeIconStyles,
 	IconWrapper,
 	ModalContainer,
@@ -30,7 +31,7 @@ import {
 
 import Modal from 'react-modal';
 import { useEffect, useState } from 'react';
-import { checkDomain, checkResume } from '../../utils/validation';
+import { checkDomain } from '../../utils/validation';
 import { toast } from 'react-hot-toast';
 
 const customStyles = {
@@ -101,10 +102,7 @@ const FormTwo = ({
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (
-			checkResume(data.resume).valid &&
-			checkDomain(domainsArray.join(', ')).valid
-		) {
+		if (checkDomain(domainsArray.join(', ')).valid) {
 			slideResult(3);
 			fetch('/api/submit', {
 				method: 'POST',
@@ -151,12 +149,6 @@ const FormTwo = ({
 	const checkChange = (e) => {
 		handleChange(e);
 		switch (e.target.name) {
-			case 'resume':
-				setErrors({
-					...errors,
-					resume: !checkResume(e.target.value).valid,
-				});
-				break;
 			case 'domains':
 				setErrors({
 					...errors,
@@ -188,53 +180,25 @@ const FormTwo = ({
 			</Modal>
 			<FormItem>
 				<LabelStyles>
-					Resume Link *
+					Resume Link
 					<IconWrapper onClick={() => setIsOpen(true)}>
 						<FontAwesomeIcon
 							icon={faInfo}
 							style={{ fontSize: 14, color: 'white' }}
 						/>
 					</IconWrapper>
-					<ErrorText>
-						{errors.resume ? checkResume(data.resume).message : ''}
-					</ErrorText>
 				</LabelStyles>
 				<InputStyles
 					type='text'
 					name='resume'
 					placeholder='Enter your resume link'
 					value={data.resume}
-					id={errors.resume ? 'error' : ''}
 					onChange={checkChange}
 				/>
 			</FormItem>
 			<FormItem>
 				<LabelStyles>
-					Add your project(s) <NoteText>Separate mutliple by commas</NoteText>
-				</LabelStyles>
-				<InputStyles
-					type='text'
-					name='projects'
-					placeholder='Enter your project(s)'
-					value={data.projects}
-					onChange={handleChange}
-				/>
-			</FormItem>
-			<FormItem>
-				<LabelStyles>
-					Other Skill(s) <NoteText>Separate mutliple by commas</NoteText>
-				</LabelStyles>
-				<InputStyles
-					type='text'
-					name='skills'
-					placeholder='Enter your skill(s)'
-					value={data.skills}
-					onChange={handleChange}
-				/>
-			</FormItem>
-			<FormItem>
-				<LabelStyles>
-					Domain(s) of Interest *{' '}
+					Domain of Interest *{' '}
 					<ErrorText>
 						{errors.domains ? checkDomain(domainsArray.join(', ')).message : ''}
 					</ErrorText>
@@ -243,7 +207,7 @@ const FormTwo = ({
 					<InputStyles
 						type='text'
 						name='domains'
-						placeholder='Select your domain(s)'
+						placeholder='Select your domains'
 						value={domainsArray.join(', ')}
 						id={errors.domains ? 'error' : ''}
 						onChange={checkChange}
@@ -256,6 +220,9 @@ const FormTwo = ({
 				</Container>
 				{dropdownOpen && (
 					<DropdownContainer>
+						<DropdownItem>
+							<DropdownTitle>Technical domains</DropdownTitle>
+						</DropdownItem>
 						<DropdownItem>
 							<DropdownCheckbox
 								type='checkbox'
@@ -319,17 +286,62 @@ const FormTwo = ({
 							/>
 							AI/ML
 						</DropdownItem>
+						<DropdownItem style={{ marginTop: '12px' }}>
+							<DropdownTitle>Non technical domains</DropdownTitle>
+						</DropdownItem>
+						<DropdownItem>
+							<DropdownCheckbox
+								type='checkbox'
+								value='Public Relations Management'
+								checked={domainsArray.includes('Public Relations Management')}
+								onChange={handleCheckbox}
+							/>
+							Public Relations Management
+						</DropdownItem>
+						<DropdownItem>
+							<DropdownCheckbox
+								type='checkbox'
+								value='Media and Content Creation'
+								checked={domainsArray.includes('Media and Content Creation')}
+								onChange={handleCheckbox}
+							/>
+							Media and Content Creation
+						</DropdownItem>
 					</DropdownContainer>
 				)}
 			</FormItem>
 			<FormItem>
 				<LabelStyles>
-					Other Interest(s) <NoteText>Separate mutliple by commas</NoteText>
+					Add your projects <NoteText>Separate by commas</NoteText>
+				</LabelStyles>
+				<InputStyles
+					type='text'
+					name='projects'
+					placeholder='Enter your projects. Eg: github.com/username/project'
+					value={data.projects}
+					onChange={handleChange}
+				/>
+			</FormItem>
+			<FormItem>
+				<LabelStyles>
+					Other skills <NoteText>Separate by commas</NoteText>
+				</LabelStyles>
+				<InputStyles
+					type='text'
+					name='skills'
+					placeholder='Enter your skills. Eg: hackerrank.com/username'
+					value={data.skills}
+					onChange={handleChange}
+				/>
+			</FormItem>
+			<FormItem>
+				<LabelStyles>
+					Other Interests <NoteText>Separate by commas</NoteText>
 				</LabelStyles>
 				<InputStyles
 					type='text'
 					name='interests'
-					placeholder='Enter your interest(s)'
+					placeholder='Enter your interests. Eg: Hobbies'
 					value={data.interests}
 					onChange={handleChange}
 				/>

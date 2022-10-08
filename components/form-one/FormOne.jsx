@@ -121,7 +121,7 @@ const FormOne = ({ slideForm, data, handleChange }) => {
 				<InputStyles
 					type='text'
 					name='github'
-					placeholder='Enter your github link'
+					placeholder='Enter your github link. Eg: github.com/username'
 					id={errors.github ? 'error' : ''}
 					value={data.github}
 					onChange={checkChange}
@@ -137,7 +137,7 @@ const FormOne = ({ slideForm, data, handleChange }) => {
 				<InputStyles
 					type='text'
 					name='linkedin'
-					placeholder='Enter your linkedin link'
+					placeholder='Enter your linkedin link. Eg: linkedin.com/in/username'
 					id={errors.linkedin ? 'error' : ''}
 					value={data.linkedin}
 					onChange={checkChange}

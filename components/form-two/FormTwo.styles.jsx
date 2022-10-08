@@ -22,10 +22,11 @@ export const FontAwesomeIconStyles = styled(FontAwesomeIcon)`
 
 export const DropdownContainer = styled.div`
 	position: absolute;
-	height: 192px;
+	min-height: 320px;
 	width: 90%;
 	background-color: #ffffff;
-	top: 73px;
+	border: 1px solid #999;
+	top: 77px;
 	left: 5%;
 	z-index: 1;
 	padding: 10px;
@@ -36,6 +37,11 @@ export const DropdownItem = styled.label`
 	display: flex;
 	gap: 10px;
 	cursor: pointer;
+`;
+
+export const DropdownTitle = styled.div`
+	font-size: 1.2rem;
+	font-weight: 600;
 `;
 
 export const DropdownCheckbox = styled.input``;
