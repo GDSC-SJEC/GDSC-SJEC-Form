@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const LoadingContainer = styled.div`
-	padding-top: 120px;
+	padding-top: 20px;
+	padding-bottom: 40px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

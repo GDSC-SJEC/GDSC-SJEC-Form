@@ -8,26 +8,21 @@ export const BackgroundContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	@media screen and (max-width: 768px) {
-		height: unset;
-	}
 `;
 
 export const FormContainer = styled.div`
 	display: flex;
 	width: 600px;
-	height: 800px;
 	background-color: #2c2728;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-top: 60px;
+	padding: 50px 0;
 	border-radius: 20px;
 
 	@media screen and (max-width: 768px) {
 		padding: 40px 0;
 		width: 95%;
-		height: 850px;
 		margin: 20px 0;
 	}
 `;

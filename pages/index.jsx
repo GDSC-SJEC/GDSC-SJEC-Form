@@ -12,6 +12,7 @@ import FormTwo from '../components/form-two/FormTwo';
 import FormThree from '../components/form-three/FormThree';
 import ErrorForm from '../components/error-form/ErrorForm';
 import { Toaster } from 'react-hot-toast';
+import Head from 'next/head';
 
 const Home = () => {
 	const initialState = {
@@ -54,6 +55,9 @@ const Home = () => {
 
 	return (
 		<>
+			<Head>
+				<title>GDSC SJEC Details Form</title>
+			</Head>
 			<Toaster position='top-right' reverseOrder={false} />
 			<BackgroundContainer>
 				<FormContainer>
