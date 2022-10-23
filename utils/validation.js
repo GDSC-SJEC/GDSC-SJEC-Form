@@ -6,6 +6,18 @@ const isEmailValid = (email) => {
 		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	return re.test(email);
 };
+const isUSNValid = (usn) => {
+	const re = /^(4SO[0-9]{2}[A-Z]{2}[0-9]{3})$/;
+	return re.test(usn);
+};
+const isSemesterValid = (sem) => {
+	const re = /^([1-8])$/;
+	return re.test(sem);
+};
+const isSectionValid = (sec) => {
+	const re = /^([A-Z])$/;
+	return re.test(sec);
+};
 
 export const checkName = (name) => {
 	let valid = false;
@@ -19,6 +31,51 @@ export const checkName = (name) => {
 	} else if (!isBetween(name.length, min, max)) {
 		valid = false;
 		message = `Name must be between ${min} and ${max} characters`;
+	} else {
+		valid = true;
+	}
+	return { valid, message };
+};
+
+export const checkUSN = (usn) => {
+	let valid = false;
+	let message = '';
+	if (!isRequired(usn)) {
+		valid = false;
+		message = 'USN cannot be blank';
+	} else if (!isUSNValid(usn)) {
+		valid = false;
+		message = 'USN is not valid';
+	} else {
+		valid = true;
+	}
+	return { valid, message };
+};
+
+export const checkSemester = (sem) => {
+	let valid = false;
+	let message = '';
+	if (!isRequired(sem)) {
+		valid = false;
+		message = 'Semester cannot be blank';
+	} else if (!isSemesterValid(sem)) {
+		valid = false;
+		message = 'Semester is not valid';
+	} else {
+		valid = true;
+	}
+	return { valid, message };
+};
+
+export const checkSection = (sec) => {
+	let valid = false;
+	let message = '';
+	if (!isRequired(sec)) {
+		valid = false;
+		message = 'Section cannot be blank';
+	} else if (!isSectionValid(sec)) {
+		valid = false;
+		message = 'Section is not valid';
 	} else {
 		valid = true;
 	}

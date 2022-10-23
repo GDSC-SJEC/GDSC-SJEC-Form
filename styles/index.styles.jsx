@@ -125,3 +125,9 @@ export const SecondaryButtonStyles = styled.button`
 	font-size: 18px;
 	cursor: pointer;
 `;
+
+export const FlexContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+`;

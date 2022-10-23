@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
 	ErrorText,
+	FlexContainer,
 	FormItem,
 	InputStyles,
 	LabelStyles,
@@ -9,34 +10,40 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
+import {
+	faArrowCircleLeft,
+	faArrowCircleRight,
+} from '@fortawesome/free-solid-svg-icons';
 import {
 	checkDiscord,
 	checkEmail,
 	checkGitHub,
 	checkLinkedin,
-	checkName,
 } from '../../utils/validation';
 import { toast } from 'react-hot-toast';
 
-const FormOne = ({ slideForm, data, handleChange }) => {
+const FormOne = ({ slideForm, data, handleChange, setDirection }) => {
 	const [errors, setErrors] = useState({
-		name: false,
 		email: false,
 		github: false,
 		linkedin: false,
 		discord: false,
 	});
 
+	const routeFormZero = () => {
+		slideForm(0);
+		setDirection('left');
+	};
+
 	const routeFormTwo = () => {
 		if (
-			checkName(data.name).valid &&
 			checkEmail(data.email).valid &&
 			checkGitHub(data.github).valid &&
 			checkLinkedin(data.linkedin).valid &&
 			checkDiscord(data.discord).valid
 		) {
 			slideForm(2);
+			setDirection('right');
 		} else {
 			toast.error('Please fill all the fields correctly', {
 				style: {
@@ -51,9 +58,6 @@ const FormOne = ({ slideForm, data, handleChange }) => {
 	const checkChange = (e) => {
 		handleChange(e);
 		switch (e.target.name) {
-			case 'name':
-				setErrors({ ...errors, name: !checkName(e.target.value).valid });
-				break;
 			case 'email':
 				setErrors({ ...errors, email: !checkEmail(e.target.value).valid });
 				break;
@@ -79,22 +83,6 @@ const FormOne = ({ slideForm, data, handleChange }) => {
 
 	return (
 		<Section>
-			<FormItem>
-				<LabelStyles>
-					Name *
-					<ErrorText>
-						{errors.name ? checkName(data.name).message : ''}
-					</ErrorText>{' '}
-				</LabelStyles>
-				<InputStyles
-					type='text'
-					name='name'
-					placeholder='Enter your name'
-					id={errors.name ? 'error' : ''}
-					value={data.name}
-					onChange={checkChange}
-				/>
-			</FormItem>
 			<FormItem>
 				<LabelStyles>
 					Email *{' '}
@@ -159,11 +147,18 @@ const FormOne = ({ slideForm, data, handleChange }) => {
 					onChange={checkChange}
 				/>
 			</FormItem>
-			<FontAwesomeIcon
-				icon={faArrowCircleRight}
-				style={{ fontSize: 64, color: 'white', cursor: 'pointer' }}
-				onClick={routeFormTwo}
-			/>
+			<FlexContainer>
+				<FontAwesomeIcon
+					icon={faArrowCircleLeft}
+					style={{ fontSize: 64, color: 'white', cursor: 'pointer' }}
+					onClick={routeFormZero}
+				/>
+				<FontAwesomeIcon
+					icon={faArrowCircleRight}
+					style={{ fontSize: 64, color: 'white', cursor: 'pointer' }}
+					onClick={routeFormTwo}
+				/>
+			</FlexContainer>
 		</Section>
 	);
 };

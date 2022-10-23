@@ -2,9 +2,9 @@ import Lottie from 'react-lottie';
 import * as animationData from '../../data/google-success.json';
 
 import { Section } from '../../styles/index.styles';
-import { AnchorStyles, Result } from './FormThree.styles';
+import { AnchorStyles, Result } from './SuccessForm.styles';
 
-const FormThree = () => {
+const SuccessForm = () => {
 	const defaultOptions = {
 		loop: true,
 		autoplay: true,
@@ -37,4 +37,4 @@ const FormThree = () => {
 	);
 };
 
-export default FormThree;
+export default SuccessForm;

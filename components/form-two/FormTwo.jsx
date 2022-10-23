@@ -58,6 +58,7 @@ const FormTwo = ({
 	setFormData,
 	slideResult,
 	setLoading,
+	setDirection,
 }) => {
 	const [isOpen, setIsOpen] = useState(true);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -103,6 +104,7 @@ const FormTwo = ({
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (checkDomain(domainsArray.join(', ')).valid) {
+			console.log(data);
 			slideResult(3);
 			fetch('/api/submit', {
 				method: 'POST',
@@ -139,6 +141,7 @@ const FormTwo = ({
 			domains: domainsArray.join(', '),
 		});
 		slideForm(1);
+		setDirection('left');
 	};
 
 	const [errors, setErrors] = useState({
